@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA - Login</title>
+    <meta name="description" content="Sistem Informasi Tiras dan Transaksi Bahan Ajar UT">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="flex-center">
+        <div class="login-container card">
+            <div class="login-header">
+                <h1>SITTA UT</h1>
+                <p>Sistem Pemesanan Bahan Ajar</p>
+            </div>
+
+            <div id="loginAlert" class="alert"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="admin@ut.ac.id" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+            </form>
+
+            <div class="login-actions">
+                <a href="#" id="btnLupaPassword">Lupa password?</a>
+                <a href="#" id="btnDaftar">Belum punya akun?</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lupa Password -->
+    <div id="modalLupaPassword" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Lupa Password</h2>
+            <p class="mb-4">Masukkan email Anda untuk mereset password.</p>
+            <form id="lupaPasswordForm" onsubmit="event.preventDefault(); alert('Link reset password telah dikirim ke email Anda!'); document.getElementById('modalLupaPassword').classList.remove('show');">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Kirim Link Reset</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Daftar -->
+    <div id="modalDaftar" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Daftar Akun Baru</h2>
+            <p class="mb-4">Isi form di bawah ini untuk membuat akun SITTA.</p>
+            <form id="daftarForm" onsubmit="event.preventDefault(); alert('Pendaftaran berhasil! Silakan login.'); document.getElementById('modalDaftar').classList.remove('show');">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

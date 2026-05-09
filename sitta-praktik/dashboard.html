@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">SITTA</a>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="active">Beranda</a></li>
+            <li><a href="stok.html">Informasi Bahan Ajar</a></li>
+            <li><a href="tracking.html">Tracking Pengiriman</a></li>
+            <li class="dropdown">
+                <button class="dropbtn">Laporan ▾</button>
+                <div class="dropdown-content">
+                    <a href="#">Monitoring Progress DO</a>
+                    <a href="#">Rekap Bahan Ajar</a>
+                </div>
+            </li>
+            <li><a href="#">Histori Transaksi</a></li>
+        </ul>
+        <div class="nav-user">
+            <span id="navUserName"></span>
+            <a href="#" id="btnLogout" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="greeting-section">
+            <h1><span id="greetingMessage">Selamat Pagi</span>, <span id="userName">User</span>!</h1>
+            <p>Selamat datang di Dashboard Sistem Informasi Tiras dan Transaksi Bahan Ajar UT.</p>
+        </div>
+
+        <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div class="card">
+                <h3>Ringkasan Stok</h3>
+                <p class="mb-4 text-light">Pantau ketersediaan bahan ajar terbaru secara real-time.</p>
+                <a href="stok.html" class="btn btn-primary">Lihat Stok</a>
+            </div>
+            
+            <div class="card">
+                <h3>Lacak Pengiriman</h3>
+                <p class="mb-4 text-light">Cek status pengiriman bahan ajar berdasarkan nomor DO.</p>
+                <a href="tracking.html" class="btn btn-primary">Tracking Sekarang</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Check if user is logged in
+        if(!sessionStorage.getItem('loggedInUser')){
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

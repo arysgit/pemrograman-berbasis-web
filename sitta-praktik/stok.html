@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA - Informasi Stok</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">SITTA</a>
+        <ul class="nav-links">
+            <li><a href="dashboard.html">Beranda</a></li>
+            <li><a href="stok.html" class="active">Informasi Bahan Ajar</a></li>
+            <li><a href="tracking.html">Tracking Pengiriman</a></li>
+            <li class="dropdown">
+                <button class="dropbtn">Laporan ▾</button>
+                <div class="dropdown-content">
+                    <a href="#">Monitoring Progress DO</a>
+                    <a href="#">Rekap Bahan Ajar</a>
+                </div>
+            </li>
+            <li><a href="#">Histori Transaksi</a></li>
+        </ul>
+        <div class="nav-user">
+            <a href="#" id="btnLogout" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="action-header">
+            <h2>Stok Bahan Ajar</h2>
+            <button id="btnTambahModal" class="btn btn-primary">+ Tambah Stok</button>
+        </div>
+
+        <div id="stokAlert" class="alert"></div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Kode Lokasi</th>
+                        <th>Kode Barang</th>
+                        <th>Nama Barang</th>
+                        <th>Jenis Barang</th>
+                        <th>Edisi</th>
+                        <th>Stok</th>
+                    </tr>
+                </thead>
+                <tbody id="stokTableBody">
+                    <!-- Dinamis via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Stok -->
+    <div id="modalTambahStok" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Tambah Stok Baru</h2>
+            <p class="mb-4 text-light">Isi form di bawah untuk menambahkan item baru.</p>
+            
+            <form id="formTambahStok">
+                <div class="form-group">
+                    <label>Kode Lokasi</label>
+                    <input type="text" id="inputKodeLokasi" class="form-control" required placeholder="Contoh: 0JKT01">
+                </div>
+                <div class="form-group">
+                    <label>Kode Barang</label>
+                    <input type="text" id="inputKodeBarang" class="form-control" required placeholder="Contoh: EKMA4216">
+                </div>
+                <div class="form-group">
+                    <label>Nama Barang</label>
+                    <input type="text" id="inputNamaBarang" class="form-control" required placeholder="Nama Buku/BMP">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Jenis</label>
+                        <select id="inputJenisBarang" class="form-control" required>
+                            <option value="BMP">BMP</option>
+                            <option value="Non-BMP">Non-BMP</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Edisi</label>
+                        <input type="number" id="inputEdisi" class="form-control" required placeholder="Edisi" min="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Stok</label>
+                    <input type="number" id="inputStok" class="form-control" required placeholder="Jumlah" min="0">
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block mt-4">Simpan Data</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        if(!sessionStorage.getItem('loggedInUser')){
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
