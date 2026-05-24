@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracking DO - SITTA UT</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="site-header">
+      <div class="container header-row">
+        <div>
+          <p class="eyebrow">Halaman 2</p>
+          <h1>Tracking Delivery Order</h1>
+        </div>
+        <nav class="nav-links" aria-label="Navigasi utama">
+          <a href="index.html">Beranda</a>
+          <a href="stok.html">Stok</a>
+          <a class="active" href="tracking.html">Tracking DO</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container tracking-layout">
+      <section class="tracking-search">
+        <p class="eyebrow">Pencarian DO</p>
+        <h2>Cek status pengiriman bahan ajar</h2>
+        <form class="tracking-form" v-on:submit.prevent="cariDO">
+          <div class="field">
+            <label for="nomorDO">Nomor Delivery Order</label>
+            <input id="nomorDO" type="text" v-model.trim="nomorDO" placeholder="Contoh: DO2025-0001">
+          </div>
+          <div class="button-row">
+            <button class="primary-button" type="submit">Cari DO</button>
+            <button class="secondary-button" type="button" v-on:click="resetCari">Reset</button>
+          </div>
+        </form>
+        <p class="notice" v-show="statusPesan" v-text="statusPesan"></p>
+      </section>
+
+      <section class="tracking-result" v-if="hasilTracking">
+        <div class="result-header">
+          <div>
+            <p class="eyebrow">{{ nomorAktif }}</p>
+            <h2>{{ hasilTracking.status }}</h2>
+          </div>
+          <span class="badge success">{{ hasilTracking.ekspedisi }}</span>
+        </div>
+
+        <div class="detail-grid">
+          <div>
+            <span>NIM</span>
+            <strong>{{ hasilTracking.nim }}</strong>
+          </div>
+          <div>
+            <span>Nama</span>
+            <strong>{{ hasilTracking.nama }}</strong>
+          </div>
+          <div>
+            <span>Paket</span>
+            <strong>{{ hasilTracking.paket }}</strong>
+          </div>
+          <div>
+            <span>Total</span>
+            <strong>{{ formatCurrency(hasilTracking.total) }}</strong>
+          </div>
+          <div>
+            <span>Tanggal kirim</span>
+            <strong>{{ formatDate(hasilTracking.tanggalKirim) }}</strong>
+          </div>
+          <div>
+            <span>Jumlah perjalanan</span>
+            <strong>{{ jumlahPerjalanan }} tahap</strong>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <h2>Riwayat Perjalanan</h2>
+          <p>Update terakhir: {{ updateTerakhir }}</p>
+        </div>
+
+        <ol class="timeline">
+          <li v-for="(step, index) in hasilTracking.perjalanan" v-bind:key="step.waktu">
+            <span class="timeline-index">{{ index + 1 }}</span>
+            <div>
+              <time>{{ step.waktu }}</time>
+              <p>{{ step.keterangan }}</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="empty-tracking" v-else-if="pernahCari">
+        <h2>Data DO tidak ditemukan</h2>
+        <p>Periksa kembali nomor Delivery Order yang dimasukkan.</p>
+      </section>
+
+      <section class="empty-tracking" v-else>
+        <h2>Masukkan nomor DO</h2>
+        <p>Gunakan contoh <strong>DO2025-0001</strong> untuk melihat data simulasi tracking.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script src="js/tracking-app.js"></script>
+</body>
+</html>
